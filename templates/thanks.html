@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+</head>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/email.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/loading.css') }}">
+
+<body>
+    <div class="overlay"></div>
+    <div class="stars" aria-hidden="true"></div>
+    <div class="starts2" aria-hidden="true"></div>
+    <div class="stars3" aria-hidden="true"></div>
+    <main class="main">
+        <section class="contact">
+            <h1 class="title">Awesome Thing</h1>
+            <h2 class="sub-title">Site Under Construction</h2>
+            <br>
+            <font color='red'>
+                <h3>Get Nortified 1<sup>st</sup></h2>
+            </font>
+            <div>
+                <form class="form" action="{{ url_for('thankyou')}}" method="POST">
+                    <input type="email" class="form__field" name="sender_email" placeholder="Your E-Mail Please"
+                        required />
+                    <button type="submit" class="btn btn--primary btn--inside uppercase">Get Nortified</button>
+                </form>
+            </div>
+            <div class="flash">
+                <h1>{{flashmsg}}</h1>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    </script>
+
+    <script>
+        $.getJSON("https://api.ipify.org?format=json", function (data) {
+            $.ajax({
+                type: "POST",
+                contentType: "application/json;charset=utf-8",
+                url: "{{url_for('test')}}",
+                traditional: "true",
+                data: JSON.stringify({data}),
+                dataType: "json"
+            });
+        })
+    </script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='js/loading.js') }}"></script>
+</body>
+
+</html>
